@@ -8,39 +8,45 @@
 - Stop graph pod: ``` slkubectl d scale sts pg-q-016-graph --replicas=0 ```
 - Keep ara logs link
 
-### Clean/Clear graph queue both: IN / WIP
+
+### Clean/Clear queue:
 <h6 style="color:red">Get confirmation to start working</h6>
 
-- slcontext
-- Create a tmux session: ```tmux new -s graph-all```
-    ```ansible-playbook m_commandline.yml -e 'command=clean-queue cmdargs=["-queue=graph","-allStates"]' ```
-- Keep ara logs link
+- Case: **Flow-all** state: **IN**
+    ```
+    tmux new -s clear-queue
+    mansible
+    vault_connect
+    slcontext -t unlv-p-001
+    ansible-playbook m_commandline.yml -e 'command=clean-queue cmdargs=["-queue=flow-all","-states=in"]'
+    # For all states 
+    ansible-playbook m_commandline.yml -e 'command=clean-queue cmdargs=["-queue=flow-all","-allStates"]'
+    ```
+- Get ARA logs
 
-### Clean/Clear audit queue: WIP
+
+### Remove a queue:
 <h6 style="color:red">Get confirmation to start working</h6>
 
-- slcontext
-- Create a tmux session: ```tmux new -s graph-wip```
-- Run:
-    ```ansible-playbook m_commandline.yml -e 'command=clean-queue cmdargs=["-queue=audit","-states=wip"]' ```
-- Keep ara logs link
+- Case: **Graph**
+    ```
+    tmux new -s rm-queue
+    mansible
+    vault_connect
+    slcontext -t unlv-p-001
+    ansible-playbook m_commandline.yml -e 'command=remove-queue cmdargs=["-queue=audit"]'
+    ```
+- Get ARA logs
 
 
-### Remove a queue: Graph
+### Graph rebuild:
 <h6 style="color:red">Get confirmation to start working</h6>
 
-- slcontext
-- Create a tmux session: ```tmux new -s graph-rm```
-- Run:
-    ``` ansible-playbook m_commandline.yml -e 'command=remove-queue cmdargs=["-queue=graph"]' ```
-- Keep ara logs link
-
-
-### Run graph only:
-<h6 style="color:red">Get confirmation to start working</h6>
-
-- slcontext
-- Create a tmux session: ```tmux new -s graph-in```
-    ``` ansible-playbook contenthub_deploy.yml -t graph-rebuild ```
-- Keep ara logs link
-
+```
+tmux new -s graph-rebuild
+mansible
+vault_connect
+slcontext -t unlv-p-001
+ansible-playbook contenthub_deploy.yml -t graph-rebuild
+```
+- Get ARA logs

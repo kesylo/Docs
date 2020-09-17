@@ -1,4 +1,4 @@
-<h1 style="color:red">Service Activation - ProSaaS</h1>
+<h1 style="color:green">Service Activation (ProSaaS)</h1>
 
 ## Legend
 - DAM = Media
